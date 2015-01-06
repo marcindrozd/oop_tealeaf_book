@@ -6,7 +6,7 @@ end
 
 class Vehicle
   attr_accessor :color, :speed
-  attr_reader :year, :model 
+  attr_reader :year, :model
 
   @@vehicles_created = 0
 
@@ -32,10 +32,6 @@ class Vehicle
     puts "You are now going #{speed} miles per hour."
   end
 
-  def current_speed
-    self.speed
-  end
-
   def shut_off
     self.speed = 0
     puts "The car has been turned off"
@@ -47,7 +43,7 @@ class Vehicle
   end
 
   def to_s
-    "This #{self.model} vehicle is from year #{self.year} and its color is #{self.color}."
+    "This #{model} vehicle is from year #{year} and its color is #{color}."
   end
 
   def self.vehicles_created
@@ -68,11 +64,19 @@ end
 class MyCar < Vehicle
   DOORS = 4
 
+  def to_s
+    "This #{model} car is from year #{year} and its color is #{color}."
+  end
+
 end
 
 class MyTruck < Vehicle
   DOORS = 2
   include Attachable
+
+  def to_s
+    "This #{model} truck is from year #{year} and its color is #{color}."
+  end
 
 end
 
@@ -83,10 +87,11 @@ mycar.spray_paint("red")
 puts mycar
 
 mycar.speed_up(100)
-mycar.current_speed
 
 mytruck = MyTruck.new(1997, "yellow", "Scania")
 mytruck2 = MyTruck.new(1982, "green", "Jelcz")
+
+puts mytruck
 
 mytruck.attach_trailer
 
