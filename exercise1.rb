@@ -53,6 +53,16 @@ class Vehicle
   def self.vehicles_created
     @@vehicles_created
   end
+
+  def age
+    "Vehicle age is #{calculate_age}."
+  end
+
+  private
+
+  def calculate_age
+    Time.now.year - self.year
+  end
 end
 
 class MyCar < Vehicle
@@ -79,5 +89,7 @@ mytruck = MyTruck.new(1997, "yellow", "Scania")
 mytruck2 = MyTruck.new(1982, "green", "Jelcz")
 
 mytruck.attach_trailer
+
+puts mytruck.age
 
 puts Vehicle.vehicles_created
